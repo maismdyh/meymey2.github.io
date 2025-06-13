@@ -1,92 +1,117 @@
-```markdown
-# Management Perpustakaan - JavaFX
+# 📚 Management Perpustakaan
 
-Aplikasi desktop sederhana untuk mengelola perpustakaan berbasis **JavaFX** dan menerapkan pola arsitektur **MVC (Model-View-Controller)**. Aplikasi ini memiliki tampilan user-friendly dan modular, serta cocok untuk latihan dasar Java OOP dan GUI.
+Aplikasi desktop untuk sistem manajemen perpustakaan yang dibangun menggunakan **JavaFX** dengan arsitektur **MVC (Model-View-Controller)**. Aplikasi ini menyediakan interface yang user-friendly untuk mengelola data buku dan anggota perpustakaan.
 
----
+## ✨ Fitur Utama
 
-## Fitur Aplikasi
+### 🏠 Beranda (Home Page)
+- Tampilan utama dengan navigasi ke fitur-fitur aplikasi
+- Tombol akses ke "Daftar Buku" dan "Daftar Anggota"
+- Header aplikasi "Management Perpustakaan"
 
-- **Beranda (Home Page)**  
-  Menampilkan tombol navigasi ke daftar buku & anggota, serta judul aplikasi.
+### 📖 Manajemen Buku
+- Tampilkan daftar lengkap koleksi buku
+- Informasi detail: ID buku, nama buku, status peminjaman
+- Tracking peminjam (ID anggota yang meminjam)
+- Operasi CRUD: Tambah, Edit, dan Hapus buku
 
-- **Manajemen Buku**  
-  Tampilkan daftar buku, ID, status peminjaman, serta tombol aksi:
-  - Tambah buku  
-  - Edit buku  
-  - Hapus buku
+### 👥 Manajemen Anggota
+- Daftar anggota perpustakaan
+- Data anggota: ID anggota, nama lengkap
+- Operasi CRUD: Tambah, Edit, dan Hapus anggota
+- Tampilkan Riwayat Aktivitas anggota
 
-- **Manajemen Anggota**  
-  Menampilkan data anggota: ID, nama anggota, dan denda (opsional).
-
----
-
-## Pembagian Tugas Kelompok
-
-| No. | Nama Anggota       | Tugas                                                                                                                                     |
-|-----|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.  | **Hairi**          | - Mendesain tampilan **Home Page**<br>- Menambahkan tombol navigasi: "Daftar Buku" & "Daftar Anggota"<br>- Menampilkan teks **"Management Perpustakaan"** |
-| 2.  | **Hilmy**          | - Mendesain tampilan **Daftar Buku**<br>- Menampilkan nama buku, ID buku, dan status peminjaman<br>- Menampilkan ID anggota peminjam<br>- Menambahkan tombol: Tambah, Edit, dan Hapus buku |
-| 3.  | **Maisyah**        | - Mendesain tampilan **Daftar Anggota**<br>- Menampilkan ID anggota, nama anggota, dan denda (opsional) |
-
----
-
-## 📂 Struktur Folder
+## 🏗️ Struktur Proyek
 
 ```
-
 Management-Perpustakaan/
 ├── app/
 │   └── src/
 │       └── main/
 │           ├── java/
-│           │   ├── management.perpustakaan/
-│           │   │   ├── App.java
-│           │   │   ├── HomeController.java
-│           │   │   ├── BookController.java
-│           │   │   ├── MemberController.java
-│           │   │   └── services/ (opsional)
-│           │   └── models/
-│           │       ├── Book.java
-│           │       ├── Member.java
-│           │       ├── Library.java
-│           │       └── LibraryItem.java
+│           │   └── management.perpustakaan/
+│           │       ├── App.java                 // Main Application
+│           │       ├── HomeController.java      // Controller untuk Home
+│           │       ├── BookController.java      // Controller untuk Buku
+│           │       ├── MemberController.java    // Controller untuk Anggota
+│           │       └── models/
+│           │           ├── Book.java           // Model Buku
+│           │           ├── Member.java         // Model Anggota
+│           │           ├── Library.java        // Model Perpustakaan
+│           │           └── LibraryItem.java    // Abstract Model Item
 │           └── resources/
 │               └── management.perpustakaan/
-│                   ├── HomeView\.fxml
-│                   ├── BookView\.fxml
-│                   └── MemberView\.fxml
+│                   ├── HomeView.fxml          // UI Home Page
+│                   ├── BookView.fxml          // UI Manajemen Buku
+│                   └── MemberView.fxml        // UI Manajemen Anggota
+```
 
-````
+## 🛠️ Teknologi yang Digunakan
 
----
+- **Java** - Bahasa pemrograman utama
+- **JavaFX** - Framework untuk GUI desktop
+- **FXML** - Markup untuk desain interface
+- **Scene Builder** - Tool untuk mendesain FXML (opsional)
 
-## Cara Menjalankan Aplikasi
+## ⚡ Cara Menjalankan
 
-1. **Clone/download** repositori.
-2. Buka di **IDE (IntelliJ/NetBeans/Eclipse)** yang mendukung JavaFX.
-3. Jalankan file `App.java`.
+### Prasyarat
+- Java Development Kit (JDK) 11 atau lebih baru
+- JavaFX SDK (jika tidak included dalam JDK)
+- IDE yang mendukung JavaFX (IntelliJ IDEA, Eclipse, NetBeans)
 
-Jika menggunakan **Gradle**:
+### Langkah Instalasi
 
+1. **Clone atau download** repositori ini
+```bash
+git clone [repository-url]
+cd Management-Perpustakaan
+```
+
+2. **Buka di IDE favorit Anda**
+
+3. **Jalankan aplikasi**
+```bash
+java management.perpustakaan.App
+```
+
+Atau jika menggunakan Gradle:
 ```bash
 ./gradlew run
-````
+```
+
+### Konfigurasi JavaFX (jika diperlukan)
+Jika JavaFX tidak terdeteksi, tambahkan VM options:
+```
+--module-path /path/to/javafx/lib --add-modules javafx.controls,javafx.fxml
+```
+
+## 🏛️ Arsitektur Aplikasi
+
+Aplikasi ini menggunakan pola **MVC (Model-View-Controller)**:
+
+- **Model**: Mengelola data dan logika bisnis (`Book.java`, `Member.java`, `Library.java`)
+- **View**: Interface pengguna yang didefinisikan dalam file FXML
+- **Controller**: Menghubungkan Model dan View, menangani interaksi pengguna
+
+## 👨‍💻 Tim Pengembang
+
+| Nama | NIM | Kontribusi |
+|------|-----|------------|
+| **Hilmy Affayyad Akbar** | H071241013 | • Desain tampilan Daftar Buku<br>• Implementasi fitur CRUD buku<br>• Tracking status peminjaman |
+| **Muhammad Hairi** | H071241055 | • Desain Home Page<br>• Navigasi antar halaman<br>• Layout aplikasi utama |
+| **Maisyah Mahdiyyah** | H071241053 | • Desain tampilan Daftar Anggota<br>• Manajemen data anggota<br>• 
+
+## 📋 Informasi Akademik
+
+- **Program Studi**: Sistem Informasi
+- **Fakultas**: Matematika & Ilmu Pengetahuan Alam (MIPA)
+- **Mata Kuliah**: Pemrograman Berorientasi Objek
+- **Dosen Pengampu**: [Nama Dosen]
+- **Kelas**: A
+
+## 📄 Lisensi
+
+Proyek ini dibuat untuk keperluan akademik dan pembelajaran.
 
 ---
-
-## Keterangan
-
-* **Prodi**: Sistem Informasi
-* **Kelas**: (Isikan kelas kalian di sini)
-* **Mata Kuliah**: Pemrograman Berorientasi Objek
-* **Dosen Pengampu**: (Isikan nama dosen kalian)
-
----
-
-## 🙌 Terima Kasih
-
-Dikerjakan sebagai tugas kelompok oleh:
-**Hairi**, **Hilmy**, dan **Maisyah**
-
-````
